@@ -30,7 +30,8 @@ pipeline {
 				}
 			 		stage('clean up') {
 			steps {
-					sh 'gcloud compute networks delete  nasa-vpc-auto  nasa-vpc-manual --quiet'
+				sh 'gcloud compute networks subnets delete nasa-vpc-manual-subnet --region=us-central1 --quiet'
+				sh 'gcloud compute networks delete  nasa-vpc-auto  nasa-vpc-manual --quiet'
 					}
 				}
 			}
