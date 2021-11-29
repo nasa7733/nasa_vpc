@@ -17,6 +17,21 @@ pipeline {
 				sh 'gcloud compute networks subnets create nasa-vpc-manual-subnet --network=nasa-vpc-manual --range=10.10.0.0/16 --region=us-central1'
 				  }
 				}
-			 
-		  }
+				
+				stage('VPC List ') {
+			steps {
+				sh 'gcloud compute networks list'
+				  }
+				}
+			 stage('Time Lapse') {
+			steps {
+				sh 'sleep 300'
+				  }
+				}
+			 		stage('clean up') {
+			steps {
+					sh 'gcloud compute networks delete  nasa-vpc-auto  nasa-vpc-manual --quiet'
+					}
+				}
+			}
 		}
